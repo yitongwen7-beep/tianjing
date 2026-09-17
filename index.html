@@ -18,6 +18,8 @@
     .detail{display:grid;grid-template-columns:minmax(190px,280px) 1fr 1fr;gap:24px;align-items:start;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);max-height:0;opacity:0;overflow:hidden;transition:max-height 280ms ease,opacity var(--ease)}.athlete[aria-expanded="true"] .detail{max-height:900px;opacity:1}.portrait{width:100%;max-height:410px;object-fit:cover;border-radius:13px;box-shadow:0 8px 20px rgba(12,57,108,.18)}.detail h4{margin:0 0 10px;color:var(--navy)}.best{font-size:24px;font-weight:900;color:var(--blue);margin:3px 0 14px}.record{padding:8px 0;border-bottom:1px dashed var(--line)}.record span{display:block;color:#5d7793;font-size:13px}.detail ul{margin:0;padding-left:18px}.detail li{margin:7px 0}
     .relay{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.relay-card{padding:17px;border-radius:14px;background:linear-gradient(135deg,#edf7ff,#fff);border:1px solid var(--line)}.relay-card h3{margin:0 0 8px;font-size:18px;color:var(--navy)}.relay-card p{font-size:14px;margin:5px 0}.relay-card strong{color:var(--blue)}
     .footer{text-align:center;color:#4f6d8b;font-size:13px;padding:40px 0 0}@media(max-width:760px){body{background-size:auto 680px}.shell{padding:16px 14px 44px}.hero{min-height:325px}.brand{font-size:10px;letter-spacing:.06em}.join-btn{padding:8px 12px;font-size:13px}.nav-cards{grid-template-columns:repeat(2,1fr);margin-top:-22px}.nav-card{padding:16px}.nav-card strong{font-size:18px}.story,.detail{grid-template-columns:1fr}.story{gap:12px}.honours,.relay{grid-template-columns:1fr}.roster{grid-template-columns:1fr 1fr;gap:10px}.athlete{padding:14px;min-height:218px}.athlete h3{font-size:20px}.athlete[aria-expanded="true"]{grid-column:span 2}.detail{gap:16px}.portrait{max-height:none}.section-head{align-items:start;flex-direction:column;gap:4px}.radar{width:128px;height:118px}}@media(max-width:390px){.roster{grid-template-columns:1fr}.athlete[aria-expanded="true"]{grid-column:span 1}}
+    .portrait{transition:transform 250ms ease-out}.athlete:hover .portrait{transform:scale(1.05)}
+    .achievement-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.achievement-gallery img{width:100%;height:220px;object-fit:cover;border-radius:14px;box-shadow:0 8px 20px rgba(12,57,108,.14)}
   </style>
 </head>
 <body>
@@ -31,13 +33,16 @@
 const athletes=[
 ['陈中扬','400m','大四 · 电子信息学院',['50.24s · 现校记录保持者'],['2025 河南省运会 400m 第二名','2026 河南省运会 400m 第四名'],[6,6,6,5,7,6],'assets/chen.jpg'],
 ['周子帆','400m','大四 · 人工智能学院',['51s'],['在赛道上持续突破'],[6,6,5,5,5,7],'assets/zhou.jpg'],
-['邢佳煊','400m','大三 · 电力电气工程学院',['50.50s'],['2026 河南省运会 400m 第三名'],[7,7,6,6,7,5],'assets/xing.jpg'],
+['邢佳煊','400m / 200m','大三 · 电力电气工程学院',['400m · 50.50s','200m · 22′48″'],['2026 河南省运会 400m 第三名'],[7,7,6,6,7,5],'assets/xing.jpg'],
 ['杨懿轩','10000m / 半马','大三 · 智能制造学院',['10000m · 34min','半马 · 113min'],['河南省运会 5000m 第五名'],[5,5,8,5,8,7],'assets/yangyixuan.jpg'],
-['王雨婷','800m / 1500m','大三 · 教育与音乐学院',['800m · 2′25″','1500m · 4′56″ · 现校记录保持者'],['2026 河南省运会 1500m 第一名'],[6,6,8,5,6,7],'assets/wang.jpg'],
+['王雨婷','800m / 1500m','大三 · 教育科学与音乐学院',['800m · 2′25″ · 现校记录保持者','1500m · 4′56″ · 现校记录保持者'],['2026 河南省运会 1500m 第一名'],[6,6,8,5,6,7],'assets/wang.jpg'],
 ['李思逸','3000m / 5000m / 半马','大三 · 经济与管理学院',['3000m · 11′38″','5000m · 20′01″ · 现校记录保持者','半马 · 132min'],['2026 河南省运会 5000m 第二名'],[5,5,8,5,9,6],'assets/li.jpg'],
 ['任永昶','100m','大三 · 智能制造学院',['11.23s'],['2026 河南省运会 100m 第四名'],[7,5,6,8,7,6],'assets/ren.jpg'],
 ['杨雪','400m / 200m','大三 · 电力电气工程学院',['400m · 63.93s · 现校记录保持者','200m · 28.88s'],['2026 河南省运会 400m 第二名'],[6,6,7,7,5,6],'assets/yangxue.png'],
-['黄英添','100m / 跳远','大三 · 电子信息学院',['100m · 11.6s','跳远 · 6.34m'],['2026 河南省运会 跳远第六名'],[7,8,5,7,5,7],'assets/huang.png']
+['黄英添','100m / 跳远','大三 · 电子信息学院',['100m · 11.6s','跳远 · 6.34m'],['2026 河南省运会 跳远第六名'],[7,8,5,7,5,7],'assets/huang.png'],
+['李家億','3000m / 半马','大五 · 智能建造与土木工程学院',['3000m · 9分31','半马 · 76分02'],['2025年、2026年校运会 3km、5km 四冠'],[6,6,9,6,9,8],'assets/lijiayi.jpg']
+,
+['杜轹恩','200m','大二 · 会计学院',['28.27'],['2026 河南省运会 200m 第四名'],[7,5,5,8,6,6],'assets/dulaien.jpg']
 ];
 const labels=['速度','力量','耐力','爆发','毅力','协作'];
 function radar(v){let pts=(scale=1)=>v.map((x,i)=>{let a=-Math.PI/2+i*Math.PI/3,r=45*(scale?x/10:1);return `${71+r*Math.cos(a)},${64+r*Math.sin(a)}`}).join(' ');let grid=[.25,.5,.75,1].map(x=>`<polygon class="grid" points="${pts(x)}"/>`).join('');let text=labels.map((l,i)=>{let a=-Math.PI/2+i*Math.PI/3,r=60;return `<text x="${71+r*Math.cos(a)}" y="${67+r*Math.sin(a)}" text-anchor="middle">${l}</text>`}).join('');return `<svg class="radar" viewBox="0 0 142 128" aria-label="六维能力图">${grid}<polygon class="data" points="${pts()}"/>${text}</svg>`}
@@ -46,4 +51,11 @@ roster.innerHTML=athletes.map((a,i)=>`<article class="athlete" tabindex="0" role
 document.querySelectorAll('.nav-card').forEach(b=>b.addEventListener('click',()=>{let p=document.getElementById(b.dataset.target), was=p.classList.contains('open');document.querySelectorAll('.panel').forEach(x=>x.classList.remove('open'));if(!was){p.classList.add('open');setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'start'}),80)}}));
 document.querySelectorAll('.athlete').forEach(card=>{function toggle(){let open=card.getAttribute('aria-expanded')==='true';document.querySelectorAll('.athlete').forEach(x=>x.setAttribute('aria-expanded','false'));card.setAttribute('aria-expanded',String(!open));if(!open)setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),70)}card.addEventListener('click',toggle);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle()}})});
 const joinBtn=document.querySelector('#joinBtn'),joinPopover=document.querySelector('#joinPopover');joinBtn.addEventListener('click',()=>{const open=joinPopover.classList.toggle('open');joinBtn.setAttribute('aria-expanded',open)});document.addEventListener('click',e=>{if(!e.target.closest('.join-wrap')){joinPopover.classList.remove('open');joinBtn.setAttribute('aria-expanded','false')}});
+joinPopover.insertAdjacentHTML('beforeend','<img src="assets/group.png" alt="洛理田径队微信群二维码" style="display:block;width:100%;margin-top:10px;border-radius:8px">');
+document.querySelector('#achievements .panel-inner').insertAdjacentHTML('beforeend','<div class="achievement-gallery"><img src="assets/awards.jpg" alt="洛理田径队奖牌与奖杯"><img src="assets/trophies.jpg" alt="洛理田径队团体奖杯"></div>');
+document.querySelector('.hero-note').innerHTML=document.querySelector('.hero-note').innerHTML.replace('9 人','11 人');
+joinPopover.insertAdjacentHTML('beforeend','<div style="margin-top:6px;text-align:center;color:#58708d;font-size:12px">洛理田径队群聊</div>');
+document.querySelector('.nav-card[data-target="members"] span:last-child').textContent='十一张名字，一支队伍';
+function rollBest(el){if(el.dataset.rolled)return;const raw=el.textContent.trim(),m=raw.match(/\d+(?:\.\d+)?/);if(!m)return;const target=Number(m[0]),start=performance.now(),prefix=raw.slice(0,m.index),suffix=raw.slice(m.index+m[0].length);function tick(now){const t=Math.min(1,(now-start)/600),ease=1-Math.pow(1-t,3),value=(target*ease).toFixed(m[0].includes('.')?m[0].split('.')[1].length:0);el.textContent=prefix+value+suffix;if(t<1)requestAnimationFrame(tick);else el.dataset.rolled='true'}el.textContent=prefix+'0'+suffix;requestAnimationFrame(tick)}
+roster.addEventListener('click',()=>setTimeout(()=>document.querySelectorAll('.athlete[aria-expanded="true"] .best').forEach(rollBest),90));
 </script></body></html>
