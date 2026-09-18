@@ -21,6 +21,38 @@
     .portrait{transition:transform 250ms ease-out}.athlete:hover .portrait{transform:scale(1.05)}
     .achievement-gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:14px}.achievement-gallery img{width:100%;height:220px;object-fit:cover;border-radius:14px;box-shadow:0 8px 20px rgba(12,57,108,.14)}
     .season-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 4px 18px;scroll-behavior:smooth}.season-track::-webkit-scrollbar{height:7px}.season-track::-webkit-scrollbar-thumb{background:#9bc4ed;border-radius:9px}.season-item{scroll-snap-align:center;flex:0 0 min(320px,82vw);position:relative;padding:20px;border-radius:18px;background:var(--paper);box-shadow:0 10px 25px rgba(15,80,150,.1);cursor:pointer;transition:transform var(--ease),box-shadow var(--ease)}.season-item:hover,.season-item.active{transform:scale(1.03);box-shadow:0 15px 30px rgba(15,80,150,.2)}.season-item:before{content:"";position:absolute;top:-13px;left:50%;width:12px;height:12px;background:var(--blue);border:3px solid #eaf4ff;border-radius:50%;transform:translateX(-50%);z-index:1}.season-item:after{content:"";position:absolute;top:-7px;left:calc(50% + 8px);width:calc(100% + 18px);height:2px;background:#9bc4ed}.season-item:last-child:after{display:none}.season-year{font-size:13px;color:var(--blue);font-weight:900}.season-item h3{margin:6px 0;font-size:18px;color:var(--navy)}.season-tag{display:inline-block;font-size:12px;padding:3px 9px;background:#e4f2ff;color:#1267cf;border-radius:999px}.season-detail{max-height:0;opacity:0;overflow:hidden;transition:max-height 280ms ease,opacity var(--ease)}.season-item.active .season-detail{max-height:180px;opacity:1}.season-detail p{font-size:13px;margin:10px 0 0;color:#5a718d}.coach-card{display:grid;grid-template-columns:180px 1fr;gap:24px;align-items:center;background:var(--paper);border-radius:20px;padding:22px;box-shadow:0 10px 28px rgba(15,80,150,.1)}.coach-card img{width:100%;height:180px;object-fit:cover;border-radius:14px}.coach-card h3{font-size:26px;color:var(--navy);margin:0 0 8px}.coach-card p{margin:7px 0;color:#506c89}@media(max-width:760px){.coach-card{grid-template-columns:1fr}.coach-card img{height:220px}}
+    /* 首屏 Apple 风格视觉覆盖：仅调整样式，不改结构与交互 */
+    body{background:#0a1f44!important;background-image:linear-gradient(135deg,#0a1f44 0%,#171f58 48%,#2a2a72 100%)!important}
+    body:before{background:linear-gradient(135deg,rgba(10,31,68,.92),rgba(42,42,114,.9))!important}
+    .hero h1,.hero .tagline,.hero .hero-note,.hero .brand{ text-shadow:0 2px 8px rgba(0,0,0,.35)}
+    .nav-card{background:rgba(255,255,255,.12)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.25);border-radius:16px;color:#fff;box-shadow:0 12px 30px rgba(0,0,0,.2)}
+    .nav-card:hover{background:rgba(255,255,255,.18)!important;box-shadow:0 16px 34px rgba(0,0,0,.28)}
+    .nav-card .nav-num{color:rgba(255,255,255,.68)}.nav-card strong{color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.35)}.nav-card span:last-child{color:rgba(255,255,255,.78)}
+    /* 交互与响应式视觉覆盖 */
+    :root{--ease:250ms cubic-bezier(.34,1.56,.64,1)}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+    .hero h1{transform:scale(var(--hero-title-scale,1));transform-origin:left center;transition:transform 180ms ease-out}
+    .topbar{z-index:20;transition:background var(--ease),box-shadow var(--ease),border var(--ease),padding var(--ease),top var(--ease)}
+    .topbar.nav-glass{position:fixed;top:12px;left:50%;width:min(1116px,calc(100% - 44px));padding:10px 14px;transform:translateX(-50%);background:rgba(13,31,73,.62);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.2);border-radius:16px;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+    .nav-card{position:relative;transition:transform var(--ease),box-shadow var(--ease),background var(--ease),border-color var(--ease)}
+    .nav-card:after{content:'→';position:absolute;right:17px;bottom:15px;color:rgba(255,255,255,.72);font-size:20px;line-height:1;transition:transform var(--ease),color var(--ease)}
+    .nav-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(0,0,0,.34)!important;background:rgba(255,255,255,.23)!important;border-color:rgba(255,255,255,.4)}
+    .nav-card:hover:after{transform:translateX(4px);color:#fff}
+    .panel,.detail,.season-detail,.join-popover{transition-timing-function:cubic-bezier(.34,1.56,.64,1)!important}
+    .season-track{scroll-behavior:smooth}.season-item{transition-timing-function:cubic-bezier(.34,1.56,.64,1)}
+    button,.nav-card,.athlete,.season-item,.join-btn{transition:transform var(--ease),box-shadow var(--ease),background var(--ease),border-color var(--ease)}
+    button:active,.nav-card:active,.athlete:active,.season-item:active,.join-btn:active{transform:scale(.97)!important}
+    @media(max-width:768px){
+      body{background:#0a1f44!important;background-image:none!important}
+      body:before{display:none}.shell{padding:14px 14px 42px}.hero{min-height:300px;padding-bottom:42px;background:#0a1f44;margin:0 -14px;padding-left:14px;padding-right:14px}
+      .hero h1{font-size:clamp(42px,13vw,62px)}.hero .tagline{font-size:16px;margin-top:20px}.hero .hero-note{font-size:13px;line-height:1.75;margin-top:18px}
+      .nav-cards{gap:12px;margin-top:-22px}.nav-card{padding:17px 15px;min-height:118px}.nav-card:after{right:14px;bottom:13px}.nav-card strong{font-size:18px}
+      .topbar.nav-glass{top:8px;width:calc(100% - 28px);padding:9px 12px}.topbar.nav-glass .brand{max-width:72%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    }
+    /* 浅蓝至深蓝背景 */
+    body{background:linear-gradient(145deg,#b7e3ff 0%,#72b6f2 32%,#2d6fbd 62%,#123b83 82%,#071b42 100%)!important}
+    body:before{background:linear-gradient(145deg,rgba(184,225,255,.2),rgba(10,31,68,.28))!important}
+    @media(max-width:768px){body{background:linear-gradient(160deg,#78b8ed 0%,#316eb4 48%,#0a1f44 100%)!important}}
   </style>
 </head>
 <body>
@@ -62,6 +94,8 @@ document.querySelector('.shell').insertAdjacentHTML('beforeend','<section class=
 document.querySelectorAll('.nav-card[data-target="season"],.nav-card[data-target="coach"]').forEach(b=>b.addEventListener('click',()=>{const p=document.getElementById(b.dataset.target),was=p.classList.contains('open');document.querySelectorAll('.panel').forEach(x=>x.classList.remove('open'));if(!was){p.classList.add('open');setTimeout(()=>p.scrollIntoView({behavior:'smooth',block:'start'}),80)}}));
 document.querySelectorAll('.season-item').forEach(item=>item.addEventListener('click',()=>item.classList.toggle('active')));new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('active')),{root:document.querySelector('.season-track'),threshold:.65}).observe(document.querySelector('.season-item'));
 document.querySelector('.shell').appendChild(document.querySelector('footer'));
+const heroTitle=document.querySelector('.hero h1'),topbar=document.querySelector('.topbar');
+window.addEventListener('scroll',()=>{const y=window.scrollY;heroTitle.style.setProperty('--hero-title-scale',String(Math.max(.72,1-y/900)));topbar.classList.toggle('nav-glass',y>80)},{passive:true});
 function rollBest(el){if(el.dataset.rolled)return;const raw=el.textContent.trim(),m=raw.match(/\d+(?:\.\d+)?/);if(!m)return;const target=Number(m[0]),start=performance.now(),prefix=raw.slice(0,m.index),suffix=raw.slice(m.index+m[0].length);function tick(now){const t=Math.min(1,(now-start)/600),ease=1-Math.pow(1-t,3),value=(target*ease).toFixed(m[0].includes('.')?m[0].split('.')[1].length:0);el.textContent=prefix+value+suffix;if(t<1)requestAnimationFrame(tick);else el.dataset.rolled='true'}el.textContent=prefix+'0'+suffix;requestAnimationFrame(tick)}
 roster.addEventListener('click',()=>setTimeout(()=>document.querySelectorAll('.athlete[aria-expanded="true"] .best').forEach(rollBest),90));
 </script></body></html>
